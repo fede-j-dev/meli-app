@@ -1,0 +1,61 @@
+<div class="section-container">
+  <h2>Compras</h2>
+
+  <div *ngIf="productsData.isError !== true" class="table-container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Producto</th>
+          <th scope="col">Precio</th>
+          <th scope="col">Cantidad</th>
+          <th scope="col">Fecha de compra</th>
+        </tr>
+      </thead>
+      <div class="loader">
+        <div
+          *ngIf="productsData?.isLoading"
+          class="spinner-border spinner-border-sm"
+          role="status"
+        ></div>
+      </div>
+      <tbody>
+        <tr
+          *ngFor="
+            let product of products
+              | slice: paginator.fromResult:paginator.toResult
+          "
+        >
+          <th scope="row">{{ product.id_compra }}</th>
+          <td>{{ product.titulo }}</td>
+          <td>${{ product.precio.total | number: "0.0-0" }}</td>
+          <td>{{ product.cantidad }}</td>
+          <td>{{ product.fecha | date: "dd/MM/yyyy" }}</td>
+          <div>
+            <button
+              class="btn btn-outline-primary"
+              (click)="handleClickProduct($event)"
+            >
+              ver detalle
+            </button>
+          </div>
+        </tr>
+      </tbody>
+    </table>
+
+    <mat-paginator
+      [length]="products?.length"
+      [pageSize]="5"
+      (page)="changePage($event)"
+    ></mat-paginator>
+  </div>
+
+  <!-- // Error message // -->
+  <p *ngIf="productsData?.isError">
+    Lo lamentamos, parece que hubo un problema al consultar sus compras. Por
+    favor vuélvalo a intentar más tarde.
+  </p>
+
+  <!--/// MODAL /// -->
+  <app-modal></app-modal>
+</div>

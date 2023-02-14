@@ -1,0 +1,101 @@
+<div *ngIf="userInfo.nombre" class="section-container">
+  <div class="top-container">
+    <div class="top-content">
+      <h2>{{ userInfo?.nombre }} {{ userInfo?.apellido }}</h2>
+      <div class="location">
+        <i class="fa-solid fa-location-dot"></i>
+        <span>CABA, Argentina</span>
+      </div>
+    </div>
+    <span class="occupation">Software designer</span>
+  </div>
+
+  <!-- // Personal Info // -->
+  <div class="personal-info-container">
+    <h6>INFORMACIÓN PERSONAL</h6>
+    <hr />
+    <div class="personal-info-content">
+      <div><span>Teléfono: </span> <span>1167426542</span></div>
+      <div><span>Dirección: </span> <span>Conesa 51 9A Depto B</span></div>
+      <div>
+        <span>Email: </span> <span>mercadolibreChallenge@gmail.com</span>
+      </div>
+      <div><span>Estado civil: </span> <span>Soltero</span></div>
+    </div>
+  </div>
+
+  <!-- // Account details // -->
+  <div class="account-details-container">
+    <h6>DETALLES CUENTA</h6>
+    <hr />
+    <div class="account-details-content">
+      <div><span>Nickname </span> <span>petrushka95</span></div>
+      <div><span>Usuario desde: </span> <span>25/11/2018</span></div>
+      <div>
+        <span>Ventas realizadas </span>
+        <span>Aun no has realizado ninguna venta</span>
+      </div>
+    </div>
+  </div>
+  <div>
+    <!-- // Show more display conditions // -->
+    <div
+      *ngIf="!viewMore"
+      (click)="viewMore = !viewMore"
+      class="view-more-container"
+    >
+      <span class="show-more">Ver más</span>
+      <i class="fa-solid fa-arrow-right"></i>
+    </div>
+    <div
+      *ngIf="viewMore"
+      (click)="viewMore = !viewMore"
+      class="view-more-container"
+    >
+      <span class="show-more">ver menos</span>
+      <i *ngIf="viewMore" class="fa-solid fa-arrow-down"></i>
+    </div>
+
+    <!-- // Level and Restrictions // -->
+    <div *ngIf="viewMore">
+      <strong><span> Nivel MP: </span> </strong>
+
+      <!-- Level Success -->
+      <ul *ngIf="!userLevel.isError && !userLevel.isLoading">
+        <li>
+          {{ userLevel["descripción"] }}
+        </li>
+      </ul>
+      <!-- Level Loading -->
+      <div
+        *ngIf="userLevel.isLoading"
+        class="spinner-border spinner-border-sm"
+        role="status"
+      ></div>
+      <!-- Level Error -->
+      <span *ngIf="userLevel.isError">Error al intentar cargar este dato</span>
+
+      <br />
+      <strong><span>Restricciones:</span></strong>
+
+      <!-- Restrictions Success -->
+      <ul
+        *ngIf="!userRestrictionsData.isError && !userRestrictionsData.isLoading"
+      >
+        <li *ngFor="let restriction of restrictions">
+          {{ restriction.mensaje }}
+        </li>
+      </ul>
+      <!-- Restrictions Loading -->
+      <div
+        *ngIf="userRestrictionsData.isLoading"
+        class="spinner-border spinner-border-sm"
+        role="status"
+      ></div>
+      <!-- Restrictions Error -->
+      <span *ngIf="userRestrictionsData.isError"
+        >Error al intentar cargar este dato</span
+      >
+    </div>
+  </div>
+</div>

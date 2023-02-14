@@ -1,0 +1,58 @@
+<div class="profile-container">
+  <div class="side-bar-container">
+    <div class="side-bar-content">
+      <!-- Profile pic and full name -->
+      <div class="name-pic-container">
+        <div class="pic-container">
+          <img *ngIf="userInfo.imagen" src="{{ userInfo.imagen }}" />
+          <img
+            *ngIf="!userInfo.imagen"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3puR9z5lh7UbRRX9EIJkHYQTaLHnnZIQ7dALWbUH1qsgjnuBuZ7GKK7iCh2AGH0fCGVI&usqp=CAU"
+          />
+        </div>
+        <div class="user-full-name">
+          <span>{{ userInfo.nombre }} {{ userInfo.apellido }}</span>
+          <span *ngIf="!userInfo.nombre">...</span>
+        </div>
+      </div>
+
+      <!-- // Links to sections  //-->
+
+      <div *ngIf="userInfo.imagen" class="section-links">
+        <!-- Personal Information -->
+        <div
+          routerLink="home"
+          class="link-info-general"
+          [class.selected-section]="selectedSection === 1"
+          (click)="selectedSection = 1"
+        >
+          <div class="icon">
+            <i class="fa-regular fa-user"></i>
+          </div>
+          <div>
+            <span> Información personal </span>
+          </div>
+        </div>
+
+        <!-- Purchases -->
+        <div
+          routerLink="purchases"
+          class="link-purchases"
+          [class.selected-section]="selectedSection === 2"
+          (click)="selectedSection = 2"
+        >
+          <div class="icon">
+            <i class="fa-solid fa-cart-shopping"></i>
+          </div>
+          <div>
+            <span> Compras </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="profile-child-content">
+    <!-- /////// ROUTER OUTLET ////// -->
+    <router-outlet></router-outlet>
+  </div>
+</div>

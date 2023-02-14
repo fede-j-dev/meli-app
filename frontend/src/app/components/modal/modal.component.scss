@@ -1,0 +1,21 @@
+.modal {
+  display: block;
+  opacity: 1;
+  padding: 10px;
+
+  .modal-body {
+    display: flex;
+    padding: 0;
+    justify-content: space-evenly;
+
+    > .product-data-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .spinner-border {
+        margin-left: 3px;
+      }
+    }
+  }
+}

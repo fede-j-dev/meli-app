@@ -1,0 +1,48 @@
+.section-container {
+  h6 {
+    color: #d3d3d3;
+  }
+
+  .top-container {
+    margin-bottom: 50px;
+
+    > .top-content {
+      display: flex;
+    }
+    .location {
+      display: flex;
+      margin-left: 10px;
+      align-items: center;
+      color: #d3d3d3;
+    }
+    > .occupation {
+      color: #0d6efd;
+    }
+  }
+
+  .personal-info-containter {
+    > .personal-info-content {
+      margin-bottom: 50px;
+    }
+  }
+
+  .fa-arrow-right,
+  .fa-arrow-down {
+    margin-left: 5px;
+    color: #0d6efd;
+  }
+  .personal-info-content div,
+  .account-details-content div {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+  }
+
+  .view-more-container {
+    cursor: pointer;
+    margin-bottom: 30px;
+    > .show-more {
+      color: #d3d3d3;
+    }
+  }
+}

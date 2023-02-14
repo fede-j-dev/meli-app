@@ -1,0 +1,87 @@
+<div *ngIf="showModal" class="modal fade bd-example-modal-lg">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <!-- Modal header -->
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          {{ productData.titulo }}
+        </h5>
+        <button
+          type="button"
+          class="close btn btn-primary"
+          data-dismiss="modal"
+          aria-label="Close"
+          (click)="showModal = !showModal"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body">
+        <div>
+          <img src="{{ productData.imagen }}" alt="" />
+        </div>
+        <div class="product-data-container">
+          <p>
+            <span><strong>Id:</strong> {{ productData.id_compra }}</span>
+          </p>
+          <p>
+            <span> <strong>Cantidad:</strong> {{ productData.cantidad }}</span>
+          </p>
+          <p>
+            <span>
+              <strong>Fecha de la compra:</strong>
+              {{ productData.fecha | date: "dd/MM/yyyy" }}</span
+            >
+          </p>
+          <p>
+            <span
+              ><strong>Precio:</strong> ${{
+                productData.precio.total | number: "0.0-0"
+              }}</span
+            >
+          </p>
+          <p>
+            <span
+              ><strong>Vendedor: </strong>
+              {{ productData.vendedor.nickname }}</span
+            >
+          </p>
+          <div>
+            <!-- /// PAYMENT /// -->
+            <span> <strong> Estado del pago:</strong> </span>
+            <!--  success -->
+            <span *ngIf="!itemPayment.isError && !itemPayment.isLoading">
+              {{ itemPayment.res.estado }}</span
+            >
+            <!-- loading -->
+            <div
+              *ngIf="itemPayment.isLoading"
+              class="spinner-border spinner-border-sm"
+              role="status"
+            ></div>
+            <!-- error -->
+            <span *ngIf="itemPayment.isError"> Error al cargar el dato </span>
+          </div>
+          <div>
+            <!-- /// SHIPMENT /// -->
+            <span><strong>Estado de envio: </strong></span>
+            <span *ngIf="!itemShipment.isError && !itemShipment.isLoading">
+              <!-- success -->
+              {{ itemShipment.res.estado }}</span
+            >
+            <!-- loading -->
+            <div
+              *ngIf="itemShipment.isLoading"
+              class="spinner-border spinner-border-sm"
+              role="status"
+            ></div>
+            <!-- error -->
+            <span *ngIf="itemShipment.isError"> Error al cargar el dato </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

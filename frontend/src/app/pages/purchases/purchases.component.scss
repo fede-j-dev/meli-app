@@ -1,0 +1,15 @@
+.section-container {
+  h2 {
+    margin-bottom: 40px;
+  }
+  .table-container {
+    > tbody tr {
+      height: 70px;
+    }
+
+    .loader {
+      position: relative;
+      left: 180px;
+    }
+  }
+}
